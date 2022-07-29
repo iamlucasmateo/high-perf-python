@@ -13,3 +13,14 @@ Unix time command
 /usr/bin/time --verbose -p python ch2/julia.py
 This includes the start up time of the process (interesting if you start many processes)
 Major (requiring I/O) page faults is interestings, shows you if disk data has to be read because memory is full_run
+
+
+cProfile
+--------
+python -m cProfile -s [sort: time, cumulative] julia.py
+This can also be used from a module see c_prof.py
+
+
+snakeviz
+--------
+snakeviz [profile_file]
