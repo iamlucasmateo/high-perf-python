@@ -10,7 +10,7 @@ if __name__ == "__main__":
     full_run()
 
     pr.disable()
-    pr.dump_stats("ch2/julia.profile")
+    pr.dump_stats("julia.profile")
     stats = Stats(pr)
     # can also do Stats("folder/file")
     first_n_lines = 10

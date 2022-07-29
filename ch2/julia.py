@@ -44,6 +44,23 @@ def count_iterations(bi_coordinates: Iterable[Iterable[complex]], constant: comp
     
     return counts
 
+def count_iterations_alt(bi_coordinates: Iterable[Iterable[complex]], constant: complex, max_iter: int):
+    counts: List[List[int]] = []
+    for row in bi_coordinates:
+        row_counts = []
+        for z in row:
+            z_aux = z
+            for iteration in range(max_iter):
+                if iteration != max_iter - 1 and abs(z_aux) < 2:
+                    z_aux: complex = z_aux*z_aux + constant
+                else:
+                    gray_scale = int((iteration / max_iter) * 255)
+                    row_counts.append((gray_scale, gray_scale, gray_scale))
+                    break
+        counts.append(row_counts)
+    
+    return counts
+
 
 def full_run():
     coords = get_complex_coords(MIN_, MAX_, splits = SPLITS)

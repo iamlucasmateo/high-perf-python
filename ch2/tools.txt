@@ -24,3 +24,24 @@ This can also be used from a module see c_prof.py
 snakeviz
 --------
 snakeviz [profile_file]
+
+
+line_profiler
+-------------
+To generate a line profile file:
+kernprof -l -v julia.py
+
+To read the profile file
+python -m line_profile [file_name]
+
+
+pyinstrument
+-------------
+Sampling profiler
+
+
+py-spy
+------
+Sampling profiler written in Rust, can be used even in prod
+py-spy record -o [file_name].svg -- python [module].py
+py-spy record -o py_spy_profile.svg -- python julia.py
