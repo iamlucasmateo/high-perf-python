@@ -2,3 +2,5 @@ matplotlib
 ipython
 snakeviz
 line_profiler
+pyinstrument
+py-spy
