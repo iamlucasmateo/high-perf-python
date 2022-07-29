@@ -1,0 +1,15 @@
+timeit module
+--------------
+Python module, e.g. call:
+python -m timeit -n [loops] -r [repetitions] -s [setup steps]
+python -m timeit -n 5 -r 3 -s "from julia import full_run; full_run()"
+
+System Monitor in Ubuntu
+------------------------
+
+
+Unix time command
+-----------------
+/usr/bin/time --verbose -p python ch2/julia.py
+This includes the start up time of the process (interesting if you start many processes)
+Major (requiring I/O) page faults is interestings, shows you if disk data has to be read because memory is full_run

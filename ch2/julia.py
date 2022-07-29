@@ -3,7 +3,7 @@ from typing import Iterable, Dict, List
 import matplotlib.pyplot as plt
 
 
-C_CONSTANT = -0.62772 + 0.42193j
+C_CONSTANT = -0.63772 + 0.42193j
 MIN_, MAX_ = -1.6, 1.6
 MAX_ITER = 600
 SPLITS = 600
@@ -48,11 +48,7 @@ def count_iterations(bi_coordinates: Iterable[Iterable[complex]], constant: comp
 def full_run():
     coords = get_complex_coords(MIN_, MAX_, splits = SPLITS)
     iterations = count_iterations(coords, C_CONSTANT, MAX_ITER)
-    
     plt.matshow(iterations)
-    # plt.xticks(range(ncols), col_labels)
-    # plt.yticks(range(nrows), row_labels)
-    plt.show()
     plt.savefig("example")
 
 
