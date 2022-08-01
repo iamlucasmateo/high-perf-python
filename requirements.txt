@@ -4,3 +4,5 @@ snakeviz
 line_profiler
 pyinstrument
 py-spy
+psutil
+memory_profiler

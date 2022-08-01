@@ -32,7 +32,7 @@ To generate a line profile file:
 kernprof -l -v julia.py
 
 To read the profile file
-python -m line_profile [file_name]
+python -m line_profiler [file_name]
 
 
 pyinstrument
@@ -45,3 +45,14 @@ py-spy
 Sampling profiler written in Rust, can be used even in prod
 py-spy record -o [file_name].svg -- python [module].py
 py-spy record -o py_spy_profile.svg -- python julia.py
+
+memory_profiler
+-----------------
+from memory_profiler import profile # use this as a decorator, then run:
+python -m memory_profiler [module.py]
+To stream the output:
+fp = open("memory_prof.log", "wb")
+@profile(stream=fp)
+def my_func():
+    ...
+https://github.com/pythonprofilers/memory_profiler

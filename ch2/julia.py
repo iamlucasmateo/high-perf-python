@@ -1,12 +1,16 @@
 from typing import Iterable, Dict, List
 
+from memory_profiler import profile
+
 import matplotlib.pyplot as plt
 
 
 C_CONSTANT = -0.63772 + 0.42193j
 MIN_, MAX_ = -1.6, 1.6
-MAX_ITER = 600
-SPLITS = 600
+# MAX_ITER = 600
+# SPLITS = 600
+MAX_ITER = 100
+SPLITS = 300
 
 
 def get_complex_coords(min_: float, max_: float, splits: int):
@@ -26,7 +30,9 @@ def get_complex_coords(min_: float, max_: float, splits: int):
     
     return bi_coords
 
+fp = open("mem_prof.log", "w+")
 
+@profile(stream=fp)
 def count_iterations(bi_coordinates: Iterable[Iterable[complex]], constant: complex, max_iter: int):
     counts: List[List[int]] = []
     for row in bi_coordinates:
