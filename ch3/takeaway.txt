@@ -1,0 +1,4 @@
+- append is a very expensive operation because it adds overhead to a list (i.e., allocates more space than strictly needed)
+- if possible use tuples
+- list comprehensions are better than append
+- list comprehensions with declared functions are better than append/lambdas
