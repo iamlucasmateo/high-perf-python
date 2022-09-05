@@ -1,3 +1,6 @@
+##### COMPARING LOOKUP IN LIST ( O(n) ) / BISECT ( O(log n) ) / DICT ( O(1) )
+
+
 import random
 import string
 import pickle
