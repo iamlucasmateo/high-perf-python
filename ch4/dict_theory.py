@@ -54,22 +54,24 @@ def sophisticated_probing(key, mask=0b111, PERTURB_SHIFT=5):
 
 
 # Dummy idea of how it works
+from typing import Union, Callable
 
-# This simple hash generator will just have too many collisions
-def simple_hash_gen(key):
-    return ord(key[0])
-
-class NewDict:
-    """Implementation that probes into lists (not what Python does)."""
-    def __init__(self, hash_func = simple_hash_gen, mask: int = 0b111, **kwargs):
+class DictWithList:
+    """Implementation that uses lists for dealing with hash collisions (not what Python does)."""
+    def __init__(self, hash_func: Union[Callable, None] = None, mask: int = 0b111, **kwargs):
         self.data = [[] for i in range(mask)]
-        self.hash_func = hash_func
+        self.hash_func = hash_func or self.ord_hash
         self.mask = mask
 
         for k, v in kwargs.items():
             masked_key = hash_func(k) & mask
             # data is stored in a list
             self.data[masked_key].append((k, v))
+    
+    @staticmethod
+    def ord_hash(key):
+        # This simple hash generator will have lots of collisions
+        return ord(key[0])
     
     def lookup(self, key):
         hash_key = self.hash_func(key) & self.mask
@@ -81,10 +83,12 @@ class NewDict:
         raise KeyError("Inexistent key")
     
     def insert(self, key, value):
+        """Inserts into keys which have a list (probing would be used instead)."""
         hash_key = self.hash_func(key) & self.mask
         keys_and_values = self.data[hash_key]
+        
         if keys_and_values is not None:
-            print(f"Hash collision: key space taken by {keys_and_values}. Investigate probing.")
+            print(f"Hash collision: key space taken by {keys_and_values}.")
         
         for i, k_v in enumerate(keys_and_values):
             if key == k_v[0]:
@@ -118,10 +122,9 @@ class NewDict:
 # Resizing can increase or decrease dict size, but it only happens during inserts.    
 
 
+### IMPORTING MODULES
 
-
-
-
-
+# Python looks for variables in: (1) locals(); (2) globals(); (3) __builtins__;
+# globals() and __builtins__ imply a dictionary lookup, which can sometimes be simplified by declaring the variable once.
 
 
